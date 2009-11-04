@@ -2,6 +2,6 @@ namespace Security
 {
 	public class User
 	{
-		int Id { get; set; }
+		public int Id { get; set; }
 	}
 }

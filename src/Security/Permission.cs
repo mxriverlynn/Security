@@ -2,14 +2,14 @@
 {
 	public class Permission
 	{
-		public virtual int Id{ get; set; }
+		public int Id{ get; set; }
 
-		public virtual bool IsAllowed { get; set; }
+		public bool IsAllowed { get; set; }
 
-		public virtual Activity Activity { get; set; }
+		public Activity Activity { get; set; }
 
-		public virtual User User { get; set; }
+		public User User { get; set; }
 
-		public virtual Role Group { get; set; }
+		public Role Role { get; set; }
 	}
 }
