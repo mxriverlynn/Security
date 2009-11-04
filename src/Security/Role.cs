@@ -2,7 +2,7 @@
 
 namespace Security
 {
-	public class UserGroup
+	public class Role
 	{
 		public virtual int Id { get; set; }
 

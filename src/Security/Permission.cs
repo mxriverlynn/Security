@@ -10,6 +10,6 @@
 
 		public virtual User User { get; set; }
 
-		public virtual UserGroup Group { get; set; }
+		public virtual Role Group { get; set; }
 	}
 }
