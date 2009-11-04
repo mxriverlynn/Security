@@ -6,6 +6,7 @@ namespace Security.TestApp
 {
 	public partial class Form1 : Form
 	{
+		private bool Allowed { get; set; }
 		private User CurrentUser { get; set; }
 
 		public Form1()
@@ -15,37 +16,32 @@ namespace Security.TestApp
 
 		private void button1_Click(object sender, System.EventArgs e)
 		{
-			UnitOfWork.Start();
-			CurrentUser = Repository<ISecurityRepository>.Do.GetUser("test");
-			UnitOfWork.Stop();
-			ShowCurrentUser();
+			LoginAs("test");
 		}
 
 		private void button2_Click(object sender, System.EventArgs e)
 		{
-			UnitOfWork.Start();
-			CurrentUser = Repository<ISecurityRepository>.Do.GetUser("fail");
-			UnitOfWork.Stop();
-			ShowCurrentUser();
+			LoginAs("fail");
 		}
 
 		private void button3_Click(object sender, System.EventArgs e)
 		{
-			UnitOfWork.Start();
-			bool allowed = Repository<ISecurityService>.Do.IsAllowed(CurrentUser, "ButtonClick");
-			UnitOfWork.Stop();
-			
-			MessageBox.Show("Are you allowed to click this? " + allowed);
+			MessageBox.Show("You obviously have permission to click this!");
 		}
 
-		private void ShowCurrentUser()
+		private void LoginAs(string name)
 		{
+			UnitOfWork.Start();
+			CurrentUser = Repository<ISecurityRepository>.Do.GetUser(name);
+			Allowed = Repository<ISecurityService>.Do.IsAllowed(CurrentUser, "ButtonClick");
+			UnitOfWork.Stop();
 			CurrentUserLabel.Text = CurrentUser.Name;
+			button3.Enabled = Allowed;
 		}
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-
+			LoginAs("test");
 		}
 	}
 }
