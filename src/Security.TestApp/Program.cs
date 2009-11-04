@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Security.Repository;
+using StructureMap;
 using UoW;
 
 namespace Security.TestApp
@@ -14,6 +15,7 @@ namespace Security.TestApp
 		static void Main()
 		{
 			UnitOfWork.Configure(RepoConfig.GetConfiguration());
+			ObjectFactory.Configure(c => c.AddRegistry<DefaultRegistry>());
 
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
@@ -28,6 +29,14 @@ namespace Security.Repository
 			IList<Permission> permissions = executableCriteria.List<Permission>();
 
 			return permissions;
+		}
+
+		public User GetUser(string name)
+		{
+			IList<User> users = Session.CreateCriteria<User>()
+				.Add(Restrictions.Eq("Name", name))
+				.List<User>();
+			return users[0];
 		}
 	}
 }
