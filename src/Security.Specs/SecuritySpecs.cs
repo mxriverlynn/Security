@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Rhino.Mocks;
+using Security.Model;
 using SpecUnit;
 
 namespace Security.Specs

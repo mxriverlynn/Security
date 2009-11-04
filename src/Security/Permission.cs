@@ -8,7 +8,7 @@
 
 		public Activity Activity { get; set; }
 
-		public User User { get; set; }
+		public IUser User { get; set; }
 
 		public Role Role { get; set; }
 	}

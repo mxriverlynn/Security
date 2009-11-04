@@ -90,14 +90,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityMap.cs" />
+    <Compile Include="IUserMap.cs" />
     <Compile Include="PermissionMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepoConfig.cs" />
     <Compile Include="RoleMap.cs" />
     <Compile Include="SecurityRepository.cs" />
     <Compile Include="UserMap.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Security.Model\Security.Model.csproj">
+      <Project>{4E74C4F6-1A49-450F-9147-E4FAD0034834}</Project>
+      <Name>Security.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{5C6820F1-F420-4FD9-99DE-70BE667E7DC9}</Project>
       <Name>Security</Name>

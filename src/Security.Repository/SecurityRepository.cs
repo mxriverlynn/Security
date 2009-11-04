@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.SqlCommand;
+using Security.Model;
 using UoW.NHibernate;
 
 namespace Security.Repository
 {
 	public class SecurityRepository: NHibernateRepository, ISecurityRepository
 	{
-		public IList<Permission> GetPermissionsForUserActivity(User user, string activity)
+		public IList<Permission> GetPermissionsForUserActivity(IUser user, string activity)
 		{
 			ICriterion userIdMatches = Restrictions.Eq("Id", user.Id);
 			ICriterion activityNameMatches = Restrictions.Eq("Name", activity);
@@ -31,12 +32,5 @@ namespace Security.Repository
 			return permissions;
 		}
 
-		public User GetUser(string name)
-		{
-			IList<User> users = Session.CreateCriteria<User>()
-				.Add(Restrictions.Eq("Name", name))
-				.List<User>();
-			return users[0];
-		}
 	}
 }

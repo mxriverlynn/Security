@@ -33,11 +33,12 @@
 			this.button3 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.CurrentUserLabel = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// button1
 			// 
-			this.button1.Location = new System.Drawing.Point(41, 12);
+			this.button1.Location = new System.Drawing.Point(41, 27);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(189, 26);
 			this.button1.TabIndex = 0;
@@ -47,9 +48,9 @@
 			// 
 			// button2
 			// 
-			this.button2.Location = new System.Drawing.Point(41, 44);
+			this.button2.Location = new System.Drawing.Point(41, 59);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(189, 31);
+			this.button2.Size = new System.Drawing.Size(189, 26);
 			this.button2.TabIndex = 1;
 			this.button2.Text = "Fail";
 			this.button2.UseVisualStyleBackColor = true;
@@ -83,11 +84,21 @@
 			this.CurrentUserLabel.TabIndex = 4;
 			this.CurrentUserLabel.Text = "{not logged in}";
 			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(38, 11);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(51, 13);
+			this.label2.TabIndex = 5;
+			this.label2.Text = "Login As:";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(284, 262);
+			this.Controls.Add(this.label2);
 			this.Controls.Add(this.CurrentUserLabel);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.button3);
@@ -108,6 +119,7 @@
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label CurrentUserLabel;
+		private System.Windows.Forms.Label label2;
 	}
 }
 

@@ -2,6 +2,6 @@ namespace Security
 {
 	public interface ISecurityService
 	{
-		bool IsAllowed(User user, string activity);
+		bool IsAllowed(IUser user, string activity);
 	}
 }

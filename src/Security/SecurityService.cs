@@ -12,7 +12,7 @@ namespace Security
 			SecurityRepository = securityRepository;
 		}
 
-		public bool IsAllowed(User user, string activity)
+		public bool IsAllowed(IUser user, string activity)
 		{
 			bool isAllowed = false;
 			IList<Permission> permissions = SecurityRepository.GetPermissionsForUserActivity(user, activity);

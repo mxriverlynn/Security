@@ -8,6 +8,6 @@ namespace Security
 
 		public virtual string Name { get; set; }
 
-		public virtual IList<User> Users { get; protected set; }
+		public virtual IList<IUser> Users { get; protected set; }
 	}
 }

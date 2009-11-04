@@ -1,8 +1,9 @@
 using FluentNHibernate.Mapping;
+using Security.Model;
 
 namespace Security.Repository
 {
-	public class UserMap: ClassMap<User>
+	public class UserMap: SubclassMap<User>
 	{
 		public UserMap()
 		{
@@ -12,10 +13,6 @@ namespace Security.Repository
 		private void CreateMap()
 		{
 			Table("Users");
-
-			Id(u => u.Id)
-				.Column("Id")
-				.GeneratedBy.Native();
 
 			Map(u => u.Name);
 			Map(u => u.Password);

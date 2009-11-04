@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.TestApp", "Securit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Specs", "Security.Specs\Security.Specs.csproj", "{32D71B59-4B23-49E8-93A6-AAA00DF8CC8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Model", "Security.Model\Security.Model.csproj", "{4E74C4F6-1A49-450F-9147-E4FAD0034834}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{32D71B59-4B23-49E8-93A6-AAA00DF8CC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32D71B59-4B23-49E8-93A6-AAA00DF8CC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32D71B59-4B23-49E8-93A6-AAA00DF8CC8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E74C4F6-1A49-450F-9147-E4FAD0034834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E74C4F6-1A49-450F-9147-E4FAD0034834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E74C4F6-1A49-450F-9147-E4FAD0034834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E74C4F6-1A49-450F-9147-E4FAD0034834}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
