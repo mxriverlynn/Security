@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Rhino.Mocks;
-using Security.Model;
+using Security.TestModel;
 using SpecUnit;
 
 namespace Security.Specs
 {
-	public class SecuritySpecs
+	public class CheckPermissionsSpecs
 	{
 
 		public class SecuritySpecsContext : ContextSpecification

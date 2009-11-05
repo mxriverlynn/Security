@@ -8,8 +8,8 @@
     <ProjectGuid>{4E74C4F6-1A49-450F-9147-E4FAD0034834}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Security.Model</RootNamespace>
-    <AssemblyName>Security.Model</AssemblyName>
+    <RootNamespace>Security.TestModel</RootNamespace>
+    <AssemblyName>Security.TestModel</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

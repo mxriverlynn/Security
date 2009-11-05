@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using NHibernate.Criterion;
-using Security.Model;
+using Security.TestModel;
 using UoW.NHibernate;
 
-namespace Security.Repository
+namespace Security.TestRepository
 {
 	public class UserRepository: NHibernateRepository, IUserRepository
 	{

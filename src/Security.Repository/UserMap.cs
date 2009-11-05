@@ -1,7 +1,7 @@
 using FluentNHibernate.Mapping;
-using Security.Model;
+using Security.TestModel;
 
-namespace Security.Repository
+namespace Security.TestRepository
 {
 	public class UserMap: SubclassMap<User>
 	{

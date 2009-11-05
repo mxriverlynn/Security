@@ -1,4 +1,4 @@
-﻿namespace Security.Model
+﻿namespace Security.TestModel
 {
 	public interface IUserRepository
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Security.Repository;
+using Security.TestRepository;
 using StructureMap;
 using UoW;
 

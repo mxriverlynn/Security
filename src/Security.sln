@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{5C6820F1-F420-4FD9-99DE-70BE667E7DC9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Repository", "Security.Repository\Security.Repository.csproj", "{8B2A0EEB-AF7C-4B51-8182-1D2A83A5E362}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.TestRepository", "Security.Repository\Security.TestRepository.csproj", "{8B2A0EEB-AF7C-4B51-8182-1D2A83A5E362}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.TestApp", "Security.TestApp\Security.TestApp.csproj", "{02107895-5982-4CFD-B6E9-478E3D5B079E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Specs", "Security.Specs\Security.Specs.csproj", "{32D71B59-4B23-49E8-93A6-AAA00DF8CC8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Model", "Security.Model\Security.Model.csproj", "{4E74C4F6-1A49-450F-9147-E4FAD0034834}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.TestModel", "Security.Model\Security.TestModel.csproj", "{4E74C4F6-1A49-450F-9147-E4FAD0034834}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

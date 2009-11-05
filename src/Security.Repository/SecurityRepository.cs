@@ -1,12 +1,10 @@
-using System;
 using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.SqlCommand;
-using Security.Model;
 using UoW.NHibernate;
 
-namespace Security.Repository
+namespace Security.TestRepository
 {
 	public class SecurityRepository: NHibernateRepository, ISecurityRepository
 	{
@@ -26,7 +24,7 @@ namespace Security.Repository
 				.Add(Restrictions.Or(userIdAliasMatches, groupSubquery));
 			permissionCriteria.CreateCriteria("Activity").Add(activityNameMatches);
 
-            ICriteria executableCriteria = permissionCriteria.GetExecutableCriteria(Session);
+			ICriteria executableCriteria = permissionCriteria.GetExecutableCriteria(Session);
 			IList<Permission> permissions = executableCriteria.List<Permission>();
 
 			return permissions;

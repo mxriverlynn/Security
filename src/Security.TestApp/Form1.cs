@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using Security.Model;
+using Security.TestModel;
 using StructureMap;
 using UoW;
 

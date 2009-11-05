@@ -1,5 +1,5 @@
-using Security.Model;
-using Security.Repository;
+using Security.TestModel;
+using Security.TestRepository;
 using StructureMap.Configuration.DSL;
 
 namespace Security.TestApp

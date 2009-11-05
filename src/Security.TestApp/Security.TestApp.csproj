@@ -132,13 +132,13 @@
     <Compile Include="DefaultRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Security.Model\Security.Model.csproj">
+    <ProjectReference Include="..\Security.Model\Security.TestModel.csproj">
       <Project>{4E74C4F6-1A49-450F-9147-E4FAD0034834}</Project>
-      <Name>Security.Model</Name>
+      <Name>Security.TestModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Security.Repository\Security.Repository.csproj">
+    <ProjectReference Include="..\Security.Repository\Security.TestRepository.csproj">
       <Project>{8B2A0EEB-AF7C-4B51-8182-1D2A83A5E362}</Project>
-      <Name>Security.Repository</Name>
+      <Name>Security.TestRepository</Name>
     </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{5C6820F1-F420-4FD9-99DE-70BE667E7DC9}</Project>
