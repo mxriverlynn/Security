@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Security.Model;
+using StructureMap;
 using UoW;
 
 namespace Security.TestApp
@@ -37,10 +38,11 @@ namespace Security.TestApp
 
 		private void LoginAs(string name)
 		{
-			UnitOfWork.Start();
-			CurrentUser = Repository<IUserRepository>.Do.GetUser(name);
-			Allowed = Repository<ISecurityService>.Do.IsAllowed(CurrentUser, "ButtonClick");
-			UnitOfWork.Stop();
+			UnitOfWork.Start(() =>
+         	{
+				CurrentUser = ObjectFactory.GetInstance<IUserRepository>().GetUser(name);
+				Allowed = ObjectFactory.GetInstance<ISecurityService>().IsAllowed(CurrentUser, "ButtonClick");			                 		
+         	});
 
 			CurrentUserLabel.Text = CurrentUser.Name;
 			button3.Enabled = Allowed;
