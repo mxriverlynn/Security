@@ -20,7 +20,7 @@ namespace Security.Repository
 				.Access.Property()
 				.AsBag()
 				.Cascade.None()
-				.Table("User_Roles")
+				.Table("User_Role")
 				.ParentKeyColumn("RoleId")
 				.ChildKeyColumn("UserId");
 		}
