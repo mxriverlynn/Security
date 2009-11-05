@@ -7,13 +7,6 @@ namespace Security.Repository
 	{
 		public UserMap()
 		{
-			CreateMap();
-		}
-
-		private void CreateMap()
-		{
-			Table("Users");
-
 			Map(u => u.Name);
 			Map(u => u.Password);
 		}

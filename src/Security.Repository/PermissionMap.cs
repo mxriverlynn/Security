@@ -11,8 +11,6 @@ namespace Security.Repository
 
 		private void CreateMap()
 		{
-			Table("Permissions");
-
 			Id(p => p.Id)
 				.Column("Id")
 				.GeneratedBy.Native();

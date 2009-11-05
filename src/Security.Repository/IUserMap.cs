@@ -6,19 +6,11 @@ namespace Security.Repository
 	{
 		public IUserMap()
 		{
-			CreateMap();
-		}
+			Table("User");
 
-		private void CreateMap()
-		{
-			Table("Users");
-			
 			Id(u => u.Id)
 				.Column("Id")
 				.GeneratedBy.Native();
-
-			DiscriminateSubClassesOnColumn("Id");
-		
 		}
 	}
 }
