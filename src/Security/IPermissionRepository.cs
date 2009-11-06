@@ -4,9 +4,9 @@ namespace Security
 {
 	public interface IPermissionRepository
 	{
-		IList<Permission> GetActionPermissionsByUserAndRole(IUser user, string action);
-		Permission GetActionPermissionsByUser(IUser user, IAction action);
-		Permission GetActionPermissionsByRole(IRole role, IAction action);
+		IList<Permission> GetPermissionsByUserWithRoles(IUser user, string action);
+		Permission GetPermissionByUser(IUser user, IAction action);
+		Permission GetPermissionByRole(IRole role, IAction action);
 		void SavePermission(Permission permission);
 		void DeletePermission(Permission permission);
 	}

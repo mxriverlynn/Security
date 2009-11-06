@@ -14,7 +14,7 @@ namespace Security
 		public bool IsAllowed(IUser user, string action)
 		{
 			bool isAllowed = false;
-			IList<Permission> permissions = PermissionRepository.GetActionPermissionsByUserAndRole(user, action);
+			IList<Permission> permissions = PermissionRepository.GetPermissionsByUserWithRoles(user, action);
 			
 			if (permissions != null)
 				isAllowed = CheckPermissionsForAllowedAccess(permissions);
@@ -24,7 +24,7 @@ namespace Security
 
 		public Permission SetPermission(IUser user, IAction action, bool isAllowed)
 		{
-			Permission permission = PermissionRepository.GetActionPermissionsByUser(user, action);
+			Permission permission = PermissionRepository.GetPermissionByUser(user, action);
 			
 			if (permission == null)
 				permission = new Permission(user, action, isAllowed);
@@ -38,7 +38,7 @@ namespace Security
 
 		public Permission SetPermission(IRole role, IAction action, bool isAllowed)
 		{
-			Permission permission = PermissionRepository.GetActionPermissionsByRole(role, action);
+			Permission permission = PermissionRepository.GetPermissionByRole(role, action);
 
 			if (permission == null)
 				permission = new Permission(role, action, isAllowed);
@@ -51,13 +51,13 @@ namespace Security
 
 		public void RemovePermission(IUser user, IAction action)
 		{
-			Permission permission = PermissionRepository.GetActionPermissionsByUser(user, action);
+			Permission permission = PermissionRepository.GetPermissionByUser(user, action);
 			DeletePermission(permission);
 		}
 
 		public void RemovePermission(IRole role, IAction action)
 		{
-			Permission permission = PermissionRepository.GetActionPermissionsByRole(role, action);
+			Permission permission = PermissionRepository.GetPermissionByRole(role, action);
 			DeletePermission(permission);
 		}
 

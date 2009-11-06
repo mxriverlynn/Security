@@ -8,7 +8,7 @@ namespace Security.TestRepository
 {
 	public class PermissionRepository: NHibernateRepository, IPermissionRepository
 	{
-		public IList<Permission> GetActionPermissionsByUserAndRole(IUser user, string action)
+		public IList<Permission> GetPermissionsByUserWithRoles(IUser user, string action)
 		{
 			ICriterion userIdMatches = Restrictions.Eq("Id", user.Id);
 			ICriterion actionNameMatches = Restrictions.Eq("Name", action);
@@ -30,7 +30,7 @@ namespace Security.TestRepository
 			return permissions;
 		}
 
-		public Permission GetActionPermissionsByUser(IUser user, IAction action)
+		public Permission GetPermissionByUser(IUser user, IAction action)
 		{
 			DetachedCriteria permissionCriteria = DetachedCriteria.For<Permission>()
 				.Add(Restrictions.Eq("User", user))
@@ -46,7 +46,7 @@ namespace Security.TestRepository
 			return permission;
 		}
 
-		public Permission GetActionPermissionsByRole(IRole role, IAction action)
+		public Permission GetPermissionByRole(IRole role, IAction action)
 		{
 			DetachedCriteria permissionCriteria = DetachedCriteria.For<Permission>()
 				.Add(Restrictions.Eq("Role", role))

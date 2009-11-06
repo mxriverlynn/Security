@@ -45,14 +45,14 @@ namespace Security.Specs
 
 			protected void SetExistingPermissionForUser(Permission permission)
 			{
-				permissionRepository.Stub(r => r.GetActionPermissionsByUser(null, null))
+				permissionRepository.Stub(r => r.GetPermissionByUser(null, null))
 					.IgnoreArguments()
 					.Return(permission);
 			}
 
 			protected void SetExistingPermissionForRole(Permission permission)
 			{
-				permissionRepository.Stub(r => r.GetActionPermissionsByRole(null, null))
+				permissionRepository.Stub(r => r.GetPermissionByRole(null, null))
 					.IgnoreArguments()
 					.Return(permission);				
 			}
@@ -79,7 +79,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_check_for_an_existing_user_to_action_permission()
 			{
-				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
+				permissionRepository.AssertWasCalled(r => r.GetPermissionByUser(user, action));
 			}
 
 			[Test]
@@ -185,7 +185,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_attempt_to_load_the_existing_permission()
 			{
-				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
+				permissionRepository.AssertWasCalled(r => r.GetPermissionByUser(user, action));
 			}
 
 			[Test]
@@ -218,7 +218,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_check_for_an_existing_role_to_action_permission()
 			{
-				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
+				permissionRepository.AssertWasCalled(r => r.GetPermissionByRole(role, action));
 			}
 
 			[Test]
@@ -321,7 +321,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_attempt_to_load_the_existing_permission()
 			{
-				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
+				permissionRepository.AssertWasCalled(r => r.GetPermissionByRole(role, action));
 			}
 
 			[Test]
