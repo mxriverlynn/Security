@@ -12,7 +12,7 @@ namespace Security
 
 		public IUser User { get; set; }
 
-		public Role Role { get; set; }
+		public IRole Role { get; set; }
 
 		private Permission() {/*for nhibernate*/}
 
@@ -22,7 +22,7 @@ namespace Security
 			Init(activity, isAllowed);
 		}
 
-		public Permission(Role role, Activity activity, bool isAllowed)
+		public Permission(IRole role, Activity activity, bool isAllowed)
 		{
 			Role = role;
 			Init(activity, isAllowed);

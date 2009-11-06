@@ -52,10 +52,10 @@ namespace Security.TestRepository
 			return permission;
 		}
 
-		public Permission GetActivityPermissionsByRole(Role role, Activity activity)
+		public Permission GetActivityPermissionsByRole(IRole role, Activity activity)
 		{
 			DetachedCriteria permissionCriteria = DetachedCriteria.For<Permission>()
-				.Add(Restrictions.Eq("Role", role))
+				.Add(Restrictions.Eq("IRole", role))
 				.Add(Restrictions.Eq("Activity", activity));
 
 			ICriteria executableCriteria = permissionCriteria.GetExecutableCriteria(Session);

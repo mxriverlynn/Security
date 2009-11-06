@@ -1,19 +1,13 @@
 using FluentNHibernate.Mapping;
+using Security.TestModel;
 
 namespace Security.TestRepository
 {
-	public class RoleMap: ClassMap<Role>
+	public class RoleMap: SubclassMap<Role>
 	{
 		public RoleMap()
 		{
-			CreateMap();
-		}
-
-		private void CreateMap()
-		{
-			Id(r => r.Id)
-				.Column("Id")
-				.GeneratedBy.Native();
+			KeyColumn("Id");
 
 			Map(r => r.Name);
 			HasManyToMany(r => r.Users)

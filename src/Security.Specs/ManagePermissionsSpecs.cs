@@ -37,7 +37,7 @@ namespace Security.Specs
 				return new SecurityService(securityRepository);
 			}
 
-			protected Role GetRole()
+			protected IRole GetRole()
 			{
 				return new Role();
 			}
@@ -201,7 +201,7 @@ namespace Security.Specs
 		public class When_setting_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
 		{
 
-			Role role;
+			IRole role;
 			Activity activity;
 
 			protected override void Context()
@@ -236,7 +236,7 @@ namespace Security.Specs
 		[Concern("Manage Permissions")]
 		public class When_updating_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
 		{
-			private Role role;
+			private IRole role;
 			Activity activity;
 			Permission permission;
 
@@ -274,7 +274,7 @@ namespace Security.Specs
 		[Concern("Manage Permissions")]
 		public class When_removing_an_existing_role_permission_for_an_activity : ManagePermissionsSpecsContext
 		{
-			Role role;
+			IRole role;
 			Activity activity;
 			Permission permission;
 
@@ -305,7 +305,7 @@ namespace Security.Specs
 		[Concern("Manage Permissions")]
 		public class When_removing_a_nonexistent_role_permission_for_an_activity : ManagePermissionsSpecsContext
 		{
-			Role role;
+			IRole role;
 			Activity activity;
 
 			protected override void Context()

@@ -36,7 +36,7 @@ namespace Security
 			return permission;
 		}
 
-		public Permission SetPermission(Role role, Activity activity, bool isAllowed)
+		public Permission SetPermission(IRole role, Activity activity, bool isAllowed)
 		{
 			Permission permission = SecurityRepository.GetActivityPermissionsByRole(role, activity);
 
@@ -55,7 +55,7 @@ namespace Security
 			DeletePermission(permission);
 		}
 
-		public void RemovePermission(Role role, Activity activity)
+		public void RemovePermission(IRole role, Activity activity)
 		{
 			Permission permission = SecurityRepository.GetActivityPermissionsByRole(role, activity);
 			DeletePermission(permission);

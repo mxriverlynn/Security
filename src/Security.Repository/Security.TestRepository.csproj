@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityMap.cs" />
+    <Compile Include="IRoleMap.cs" />
     <Compile Include="IUserMap.cs" />
     <Compile Include="PermissionMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
