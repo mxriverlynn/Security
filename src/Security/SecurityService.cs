@@ -22,6 +22,20 @@ namespace Security
 			return isAllowed;
 		}
 
+		public Permission AddPermission(IUser user, Activity activity, bool isAllowed)
+		{
+			Permission permission = new Permission(user, activity, isAllowed);
+			SecurityRepository.AddPermission(permission);
+			return permission;
+		}
+
+		public Permission AddPermission(Role role, Activity activity, bool isAllowed)
+		{
+			Permission permission = new Permission(role, activity, isAllowed);
+			SecurityRepository.AddPermission(permission);
+			return permission;			
+		}
+
 		private bool CheckPermissionsForAllowedAccess(IEnumerable<Permission> permissions)
 		{
 			bool isAllowed = false;

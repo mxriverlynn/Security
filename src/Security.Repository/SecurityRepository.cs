@@ -30,5 +30,9 @@ namespace Security.TestRepository
 			return permissions;
 		}
 
+		public void AddPermission(Permission permission)
+		{
+			Session.SaveOrUpdate(permission);
+		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace Security
+﻿using System;
+
+namespace Security
 {
 	public class Permission
 	{
@@ -11,5 +13,25 @@
 		public IUser User { get; set; }
 
 		public Role Role { get; set; }
+
+		private Permission() {/*for nhibernate*/}
+
+		public Permission(IUser user, Activity activity, bool isAllowed)
+		{
+			User = user;
+			Init(activity, isAllowed);
+		}
+
+		public Permission(Role role, Activity activity, bool isAllowed)
+		{
+			Role = role;
+			Init(activity, isAllowed);
+		}
+
+		private void Init(Activity activity, bool isAllowed)
+		{
+			Activity = activity;
+			IsAllowed = isAllowed;
+		}
 	}
 }

@@ -29,12 +29,7 @@ namespace Security.Specs
 
 			protected Permission GetPermission(bool isAllowed, User user, string activityName)
 			{
-				return new Permission
-				       	{
-				       		IsAllowed = isAllowed,
-				       		Activity = new Activity { Name = activityName },
-				       		User = user
-				       	};
+				return new Permission(user, new Activity {Name = activityName}, isAllowed);
 			}
 		}
 
