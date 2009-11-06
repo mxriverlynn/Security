@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activity.cs" />
+    <Compile Include="IAction.cs" />
     <Compile Include="ISecurityRepository.cs" />
     <Compile Include="ISecurityService.cs" />
     <Compile Include="IUser.cs" />

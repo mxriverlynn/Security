@@ -4,6 +4,7 @@ using Rhino.Mocks;
 using Rhino.Mocks.Constraints;
 using Security.TestModel;
 using SpecUnit;
+using Action=Security.TestModel.Action;
 
 namespace Security.Specs
 {
@@ -22,9 +23,9 @@ namespace Security.Specs
 				securityRepository = MockRepository.GenerateMock<ISecurityRepository>();
 			}
 
-			protected Activity GetActivity()
+			protected IAction GetAction()
 			{
-				return new Activity();
+				return new Action();
 			}
 
 			protected IUser GetUser()
@@ -44,14 +45,14 @@ namespace Security.Specs
 
 			protected void SetExistingPermissionForUser(Permission permission)
 			{
-				securityRepository.Stub(r => r.GetActivityPermissionsByUser(null, null))
+				securityRepository.Stub(r => r.GetActionPermissionsByUser(null, null))
 					.IgnoreArguments()
 					.Return(permission);
 			}
 
 			protected void SetExistingPermissionForRole(Permission permission)
 			{
-				securityRepository.Stub(r => r.GetActivityPermissionsByRole(null, null))
+				securityRepository.Stub(r => r.GetActionPermissionsByRole(null, null))
 					.IgnoreArguments()
 					.Return(permission);				
 			}
@@ -59,26 +60,26 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_setting_a_new_user_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_setting_a_new_user_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 
 			IUser user;
-			Activity activity;
+			IAction action;
 
 			protected override void Context()
 			{
 				user = GetUser();
-				activity = GetActivity();
+				action = GetAction();
 
 				ISecurityService service = GetSecurityService();
-				service.SetPermission(user, activity, allow);
+				service.SetPermission(user, action, allow);
 			}
 
 			[Test]
 			[Observation]
-			public void Should_check_for_an_existing_user_to_activity_permission()
+			public void Should_check_for_an_existing_user_to_action_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByUser(user, activity));
+				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
 			}
 
 			[Test]
@@ -95,22 +96,22 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_updating_a_user_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_updating_a_user_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 
 			IUser user;
-			Activity activity;
+			IAction action;
 			Permission permission;
 
 			protected override void Context()
 			{
 				user = GetUser();
-				activity = GetActivity();
-				permission = new Permission(user, activity, deny);
+				action = GetAction();
+				permission = new Permission(user, action, deny);
 				SetExistingPermissionForUser(permission);
 
 				ISecurityService service = GetSecurityService();
-				service.SetPermission(user, activity, allow);
+				service.SetPermission(user, action, allow);
 			}
 
 			[Test]
@@ -134,22 +135,22 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_removing_an_existing_user_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_removing_an_existing_user_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 
 			IUser user;
-			Activity activity;
+			IAction action;
 			Permission permission;
 
 			protected override void Context()
 			{
 				user = GetUser();
-				activity = GetActivity();
-				permission = new Permission(user, activity, deny);
+				action = GetAction();
+				permission = new Permission(user, action, deny);
 				SetExistingPermissionForUser(permission);
 
 				ISecurityService service = GetSecurityService();
-				service.RemovePermission(user, activity);
+				service.RemovePermission(user, action);
 			}
 
 			[Test]
@@ -166,25 +167,25 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_removing_a_nonexistent_user_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_removing_a_nonexistent_user_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 
 			IUser user;
-			Activity activity;
+			IAction action;
 
 			protected override void Context()
 			{
 				user = GetUser();
-				activity = GetActivity();
+				action = GetAction();
 				ISecurityService service = GetSecurityService();
-				service.RemovePermission(user, activity);
+				service.RemovePermission(user, action);
 			}
 
 			[Test]
 			[Observation]
 			public void Should_attempt_to_load_the_existing_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByUser(user, activity));
+				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
 			}
 
 			[Test]
@@ -198,26 +199,26 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_setting_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_setting_a_role_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 
 			IRole role;
-			Activity activity;
+			IAction action;
 
 			protected override void Context()
 			{
 				role = GetRole();
-				activity = GetActivity();
+				action = GetAction();
 
 				ISecurityService service = GetSecurityService();
-				service.SetPermission(role, activity, allow);
+				service.SetPermission(role, action, allow);
 			}
 
 			[Test]
 			[Observation]
-			public void Should_check_for_an_existing_role_to_activity_permission()
+			public void Should_check_for_an_existing_role_to_action_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByRole(role, activity));
+				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
 			}
 
 			[Test]
@@ -234,21 +235,21 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_updating_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_updating_a_role_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 			private IRole role;
-			Activity activity;
+			IAction action;
 			Permission permission;
 
 			protected override void Context()
 			{
 				role = GetRole();
-				activity = GetActivity();
-				permission = new Permission(role, activity, deny);
+				action = GetAction();
+				permission = new Permission(role, action, deny);
 				SetExistingPermissionForRole(permission);
 
 				ISecurityService service = GetSecurityService();
-				service.SetPermission(role, activity, allow);
+				service.SetPermission(role, action, allow);
 			}
 
 			[Test]
@@ -272,21 +273,21 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_removing_an_existing_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_removing_an_existing_role_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 			IRole role;
-			Activity activity;
+			IAction action;
 			Permission permission;
 
 			protected override void Context()
 			{
 				role = GetRole();
-				activity = GetActivity();
-				permission = new Permission(role, activity, deny);
+				action = GetAction();
+				permission = new Permission(role, action, deny);
 				SetExistingPermissionForRole(permission);
 
 				ISecurityService service = GetSecurityService();
-				service.RemovePermission(role, activity);
+				service.RemovePermission(role, action);
 			}
 
 			[Test]
@@ -303,24 +304,24 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_removing_a_nonexistent_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_removing_a_nonexistent_role_permission_for_an_action : ManagePermissionsSpecsContext
 		{
 			IRole role;
-			Activity activity;
+			IAction action;
 
 			protected override void Context()
 			{
 				role = GetRole();
-				activity = GetActivity();
+				action = GetAction();
 				ISecurityService service = GetSecurityService();
-				service.RemovePermission(role, activity);
+				service.RemovePermission(role, action);
 			}
 
 			[Test]
 			[Observation]
 			public void Should_attempt_to_load_the_existing_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByRole(role, activity));
+				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
 			}
 
 			[Test]

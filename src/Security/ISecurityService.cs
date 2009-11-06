@@ -2,10 +2,10 @@ namespace Security
 {
 	public interface ISecurityService
 	{
-		bool IsAllowed(IUser user, string activity);
-		Permission SetPermission(IUser user, Activity activity, bool isAllowed);
-		Permission SetPermission(IRole role, Activity activity, bool isAllowed);
-		void RemovePermission(IUser user, Activity activity);
-		void RemovePermission(IRole role, Activity activity);
+		bool IsAllowed(IUser user, string action);
+		Permission SetPermission(IUser user, IAction action, bool isAllowed);
+		Permission SetPermission(IRole role, IAction action, bool isAllowed);
+		void RemovePermission(IUser user, IAction action);
+		void RemovePermission(IRole role, IAction action);
 	}
 }

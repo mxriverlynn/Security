@@ -89,7 +89,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActivityMap.cs" />
+    <Compile Include="ActionMap.cs" />
+    <Compile Include="IActionMap.cs" />
     <Compile Include="IRoleMap.cs" />
     <Compile Include="IUserMap.cs" />
     <Compile Include="PermissionMap.cs" />

@@ -4,10 +4,10 @@ namespace Security
 {
 	public interface ISecurityRepository
 	{
-		IList<Permission> GetActivityPermissionsByUserAndRole(IUser user, string activity);
+		IList<Permission> GetActionPermissionsByUserAndRole(IUser user, string action);
+		Permission GetActionPermissionsByUser(IUser user, IAction action);
+		Permission GetActionPermissionsByRole(IRole role, IAction action);
 		void SavePermission(Permission permission);
-		Permission GetActivityPermissionsByUser(IUser user, Activity activity);
-		Permission GetActivityPermissionsByRole(IRole role, Activity activity);
 		void DeletePermission(Permission permission);
 	}
 }

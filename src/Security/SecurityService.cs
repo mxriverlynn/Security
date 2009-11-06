@@ -11,10 +11,10 @@ namespace Security
 			SecurityRepository = securityRepository;
 		}
 
-		public bool IsAllowed(IUser user, string activity)
+		public bool IsAllowed(IUser user, string action)
 		{
 			bool isAllowed = false;
-			IList<Permission> permissions = SecurityRepository.GetActivityPermissionsByUserAndRole(user, activity);
+			IList<Permission> permissions = SecurityRepository.GetActionPermissionsByUserAndRole(user, action);
 			
 			if (permissions != null)
 				isAllowed = CheckPermissionsForAllowedAccess(permissions);
@@ -22,12 +22,12 @@ namespace Security
 			return isAllowed;
 		}
 
-		public Permission SetPermission(IUser user, Activity activity, bool isAllowed)
+		public Permission SetPermission(IUser user, IAction action, bool isAllowed)
 		{
-			Permission permission = SecurityRepository.GetActivityPermissionsByUser(user, activity);
+			Permission permission = SecurityRepository.GetActionPermissionsByUser(user, action);
 			
 			if (permission == null)
-				permission = new Permission(user, activity, isAllowed);
+				permission = new Permission(user, action, isAllowed);
 			else
 				permission.IsAllowed = isAllowed;
 
@@ -36,12 +36,12 @@ namespace Security
 			return permission;
 		}
 
-		public Permission SetPermission(IRole role, Activity activity, bool isAllowed)
+		public Permission SetPermission(IRole role, IAction action, bool isAllowed)
 		{
-			Permission permission = SecurityRepository.GetActivityPermissionsByRole(role, activity);
+			Permission permission = SecurityRepository.GetActionPermissionsByRole(role, action);
 
 			if (permission == null)
-				permission = new Permission(role, activity, isAllowed);
+				permission = new Permission(role, action, isAllowed);
 			else
 				permission.IsAllowed = isAllowed;
 			
@@ -49,15 +49,15 @@ namespace Security
 			return permission;			
 		}
 
-		public void RemovePermission(IUser user, Activity activity)
+		public void RemovePermission(IUser user, IAction action)
 		{
-			Permission permission = SecurityRepository.GetActivityPermissionsByUser(user, activity);
+			Permission permission = SecurityRepository.GetActionPermissionsByUser(user, action);
 			DeletePermission(permission);
 		}
 
-		public void RemovePermission(IRole role, Activity activity)
+		public void RemovePermission(IRole role, IAction action)
 		{
-			Permission permission = SecurityRepository.GetActivityPermissionsByRole(role, activity);
+			Permission permission = SecurityRepository.GetActionPermissionsByRole(role, action);
 			DeletePermission(permission);
 		}
 

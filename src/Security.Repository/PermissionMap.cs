@@ -17,7 +17,7 @@ namespace Security.TestRepository
 
 			References(p => p.User).Column("UserId");
 			References(p => p.Role).Column("RoleId");
-			References(p => p.Activity).Column("ActivityId");
+			References(p => p.Action).Column("ActionId");
 
 			Map(p => p.IsAllowed);
 		}

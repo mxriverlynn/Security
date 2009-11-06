@@ -8,7 +8,7 @@ namespace Security
 
 		public bool IsAllowed { get; set; }
 
-		public Activity Activity { get; set; }
+		public IAction Action { get; set; }
 
 		public IUser User { get; set; }
 
@@ -16,21 +16,21 @@ namespace Security
 
 		private Permission() {/*for nhibernate*/}
 
-		public Permission(IUser user, Activity activity, bool isAllowed)
+		public Permission(IUser user, IAction action, bool isAllowed)
 		{
 			User = user;
-			Init(activity, isAllowed);
+			Init(action, isAllowed);
 		}
 
-		public Permission(IRole role, Activity activity, bool isAllowed)
+		public Permission(IRole role, IAction action, bool isAllowed)
 		{
 			Role = role;
-			Init(activity, isAllowed);
+			Init(action, isAllowed);
 		}
 
-		private void Init(Activity activity, bool isAllowed)
+		private void Init(IAction action, bool isAllowed)
 		{
-			Activity = activity;
+			Action = action;
 			IsAllowed = isAllowed;
 		}
 	}

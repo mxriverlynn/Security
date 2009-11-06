@@ -2,21 +2,20 @@ using FluentNHibernate.Mapping;
 
 namespace Security.TestRepository
 {
-	public class ActivityMap: ClassMap<Activity>
+	public class IActionMap: ClassMap<IAction>
 	{
-		public ActivityMap()
+		public IActionMap()
 		{
 			CreateMap();
 		}
 
 		private void CreateMap()
 		{
+			Table("Action");
+
 			Id(a => a.Id)
 				.Column("Id")
 				.GeneratedBy.Native();
-
-			Map(a => a.Name);
-			Map(a => a.Description);
 		}
 	}
 }
