@@ -8,8 +8,8 @@ namespace Security.TestApp
 	{
 		public DefaultRegistry()
 		{
-			ForRequestedType<ISecurityRepository>()
-				.TheDefaultIsConcreteType<SecurityRepository>();
+			ForRequestedType<IPermissionRepository>()
+				.TheDefaultIsConcreteType<PermissionRepository>();
 			ForRequestedType<IUserRepository>()
 				.TheDefaultIsConcreteType<UserRepository>();
 

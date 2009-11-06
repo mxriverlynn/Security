@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAction.cs" />
-    <Compile Include="ISecurityRepository.cs" />
+    <Compile Include="IPermissionRepository.cs" />
     <Compile Include="IAuthorizationService.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="Permission.cs" />

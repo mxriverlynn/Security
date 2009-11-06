@@ -14,7 +14,7 @@ namespace Security.TestRepository
 			Configuration config = Fluently.Configure()
 				.Database(SQLiteConfiguration.Standard.UsingFile("security.s3db"))
 				.Mappings(m => m.FluentMappings
-				               	.AddFromAssemblyOf<SecurityRepository>()
+				               	.AddFromAssemblyOf<PermissionRepository>()
 				               	.Conventions.Add(DefaultLazy.Never())
 				).BuildConfiguration();
 

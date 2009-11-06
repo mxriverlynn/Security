@@ -16,11 +16,11 @@ namespace Security.Specs
 
 		public class ManagePermissionsSpecsContext : ContextSpecification
 		{
-			protected ISecurityRepository securityRepository;
+			protected IPermissionRepository permissionRepository;
 			
 			protected override void SharedContext()
 			{
-				securityRepository = MockRepository.GenerateMock<ISecurityRepository>();
+				permissionRepository = MockRepository.GenerateMock<IPermissionRepository>();
 			}
 
 			protected IAction GetAction()
@@ -35,7 +35,7 @@ namespace Security.Specs
 
 			protected IAuthorizationService GetSecurityService()
 			{
-				return new AuthorizationService(securityRepository);
+				return new AuthorizationService(permissionRepository);
 			}
 
 			protected IRole GetRole()
@@ -45,14 +45,14 @@ namespace Security.Specs
 
 			protected void SetExistingPermissionForUser(Permission permission)
 			{
-				securityRepository.Stub(r => r.GetActionPermissionsByUser(null, null))
+				permissionRepository.Stub(r => r.GetActionPermissionsByUser(null, null))
 					.IgnoreArguments()
 					.Return(permission);
 			}
 
 			protected void SetExistingPermissionForRole(Permission permission)
 			{
-				securityRepository.Stub(r => r.GetActionPermissionsByRole(null, null))
+				permissionRepository.Stub(r => r.GetActionPermissionsByRole(null, null))
 					.IgnoreArguments()
 					.Return(permission);				
 			}
@@ -79,14 +79,14 @@ namespace Security.Specs
 			[Observation]
 			public void Should_check_for_an_existing_user_to_action_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
+				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
 			}
 
 			[Test]
 			[Observation]
 			public void Should_add_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
+				permissionRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
 					.IgnoreArguments()
 					.Constraints(Is.TypeOf<Permission>())
 				);
@@ -118,7 +118,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_add_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
+				permissionRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
 					.IgnoreArguments()
 					.Constraints(Is.TypeOf<Permission>())
 				);
@@ -157,7 +157,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_remove_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasCalled(r => r.DeletePermission(null), mo => mo
+				permissionRepository.AssertWasCalled(r => r.DeletePermission(null), mo => mo
 					.IgnoreArguments()
 					.Constraints(Is.TypeOf<Permission>())
 				);
@@ -185,14 +185,14 @@ namespace Security.Specs
 			[Observation]
 			public void Should_attempt_to_load_the_existing_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
+				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByUser(user, action));
 			}
 
 			[Test]
 			[Observation]
 			public void Should_not_remove_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasNotCalled(r => r.DeletePermission(null), mo => mo.IgnoreArguments());
+				permissionRepository.AssertWasNotCalled(r => r.DeletePermission(null), mo => mo.IgnoreArguments());
 			}
 
 		}
@@ -218,14 +218,14 @@ namespace Security.Specs
 			[Observation]
 			public void Should_check_for_an_existing_role_to_action_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
+				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
 			}
 
 			[Test]
 			[Observation]
 			public void Should_add_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
+				permissionRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
 					.IgnoreArguments()
 					.Constraints(Is.TypeOf<Permission>())
 				);
@@ -256,7 +256,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_add_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
+				permissionRepository.AssertWasCalled(r => r.SavePermission(null), mo => mo
 					.IgnoreArguments()
 					.Constraints(Is.TypeOf<Permission>())
 				);
@@ -294,7 +294,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_remove_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasCalled(r => r.DeletePermission(null), mo => mo
+				permissionRepository.AssertWasCalled(r => r.DeletePermission(null), mo => mo
 					.IgnoreArguments()
 					.Constraints(Is.TypeOf<Permission>())
 				);
@@ -321,14 +321,14 @@ namespace Security.Specs
 			[Observation]
 			public void Should_attempt_to_load_the_existing_permission()
 			{
-				securityRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
+				permissionRepository.AssertWasCalled(r => r.GetActionPermissionsByRole(role, action));
 			}
 
 			[Test]
 			[Observation]
 			public void Should_not_remove_the_permission_for_the_specified_user()
 			{
-				securityRepository.AssertWasNotCalled(r => r.DeletePermission(null), mo => mo.IgnoreArguments());
+				permissionRepository.AssertWasNotCalled(r => r.DeletePermission(null), mo => mo.IgnoreArguments());
 			}
 
 		}

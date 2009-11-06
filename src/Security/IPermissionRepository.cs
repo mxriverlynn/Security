@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Security
 {
-	public interface ISecurityRepository
+	public interface IPermissionRepository
 	{
 		IList<Permission> GetActionPermissionsByUserAndRole(IUser user, string action);
 		Permission GetActionPermissionsByUser(IUser user, IAction action);

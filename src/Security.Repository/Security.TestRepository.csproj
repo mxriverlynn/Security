@@ -97,7 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepoConfig.cs" />
     <Compile Include="RoleMap.cs" />
-    <Compile Include="SecurityRepository.cs" />
+    <Compile Include="PermissionRepository.cs" />
     <Compile Include="UserMap.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>

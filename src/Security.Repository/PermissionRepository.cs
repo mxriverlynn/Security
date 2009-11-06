@@ -7,7 +7,7 @@ using UoW.NHibernate;
 
 namespace Security.TestRepository
 {
-	public class SecurityRepository: NHibernateRepository, ISecurityRepository
+	public class PermissionRepository: NHibernateRepository, IPermissionRepository
 	{
 		public IList<Permission> GetActionPermissionsByUserAndRole(IUser user, string action)
 		{
