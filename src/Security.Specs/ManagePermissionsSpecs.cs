@@ -1,4 +1,3 @@
-using System;
 using NUnit.Framework;
 using Rhino.Mocks;
 using Rhino.Mocks.Constraints;
@@ -11,11 +10,12 @@ namespace Security.Specs
 	public class ManagePermissionsSpecs
 	{
 
-		protected static bool allow = true;
-		protected static bool deny = false;
-
 		public class ManagePermissionsSpecsContext : ContextSpecification
 		{
+			protected static bool allow = true;
+
+			protected static bool deny;
+
 			protected IPermissionRepository permissionRepository;
 			
 			protected override void SharedContext()
