@@ -31,7 +31,7 @@ namespace Security.TestRepository
 			return permissions;
 		}
 
-		public void AddPermission(Permission permission)
+		public void SavePermission(Permission permission)
 		{
 			Session.SaveOrUpdate(permission);
 		}
@@ -66,6 +66,11 @@ namespace Security.TestRepository
 				permission = permissions[0];
 
 			return permission;
+		}
+
+		public void DeletePermission(Permission permission)
+		{
+			Session.Delete(permission);
 		}
 	}
 }

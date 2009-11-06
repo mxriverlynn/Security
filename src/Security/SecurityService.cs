@@ -31,7 +31,7 @@ namespace Security
 			else
 				permission.IsAllowed = isAllowed;
 
-			SecurityRepository.AddPermission(permission);
+			SecurityRepository.SavePermission(permission);
 			
 			return permission;
 		}
@@ -45,8 +45,26 @@ namespace Security
 			else
 				permission.IsAllowed = isAllowed;
 			
-			SecurityRepository.AddPermission(permission);
+			SecurityRepository.SavePermission(permission);
 			return permission;			
+		}
+
+		public void RemovePermission(IUser user, Activity activity)
+		{
+			Permission permission = SecurityRepository.GetActivityPermissionsByUser(user, activity);
+			DeletePermission(permission);
+		}
+
+		public void RemovePermission(Role role, Activity activity)
+		{
+			Permission permission = SecurityRepository.GetActivityPermissionsByRole(role, activity);
+			DeletePermission(permission);
+		}
+
+		private void DeletePermission(Permission permission)
+		{
+			if (permission != null)
+				SecurityRepository.DeletePermission(permission);
 		}
 
 		private bool CheckPermissionsForAllowedAccess(IEnumerable<Permission> permissions)
