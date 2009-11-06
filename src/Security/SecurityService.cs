@@ -14,7 +14,7 @@ namespace Security
 		public bool IsAllowed(IUser user, string activity)
 		{
 			bool isAllowed = false;
-			IList<Permission> permissions = SecurityRepository.GetPermissionsForUserActivity(user, activity);
+			IList<Permission> permissions = SecurityRepository.GetActivityPermissionsByUserAndRole(user, activity);
 			
 			if (permissions != null)
 				isAllowed = CheckPermissionsForAllowedAccess(permissions);
@@ -22,16 +22,29 @@ namespace Security
 			return isAllowed;
 		}
 
-		public Permission AddPermission(IUser user, Activity activity, bool isAllowed)
+		public Permission SetPermission(IUser user, Activity activity, bool isAllowed)
 		{
-			Permission permission = new Permission(user, activity, isAllowed);
+			Permission permission = SecurityRepository.GetActivityPermissionsByUser(user, activity);
+			
+			if (permission == null)
+				permission = new Permission(user, activity, isAllowed);
+			else
+				permission.IsAllowed = isAllowed;
+
 			SecurityRepository.AddPermission(permission);
+			
 			return permission;
 		}
 
-		public Permission AddPermission(Role role, Activity activity, bool isAllowed)
+		public Permission SetPermission(Role role, Activity activity, bool isAllowed)
 		{
-			Permission permission = new Permission(role, activity, isAllowed);
+			Permission permission = SecurityRepository.GetActivityPermissionsByRole(role, activity);
+
+			if (permission == null)
+				permission = new Permission(role, activity, isAllowed);
+			else
+				permission.IsAllowed = isAllowed;
+			
 			SecurityRepository.AddPermission(permission);
 			return permission;			
 		}

@@ -43,7 +43,7 @@ namespace Security.Specs
 			{
 				Permission permission = GetPermission(true, _user, "some activity");
 
-				_securityRepository.Stub(r => r.GetPermissionsForUserActivity(null, null)).IgnoreArguments()
+				_securityRepository.Stub(r => r.GetActivityPermissionsByUserAndRole(null, null)).IgnoreArguments()
 					.Return(new List<Permission> {permission});
 
 				ISecurityService securityService = GetSecurityService();
@@ -54,7 +54,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_load_any_available_permission_for_the_user_and_activity()
 			{
-				_securityRepository.AssertWasCalled(r => r.GetPermissionsForUserActivity(_user, _activity));
+				_securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByUserAndRole(_user, _activity));
 			}
 
 			[Test]
@@ -76,7 +76,7 @@ namespace Security.Specs
 			{
 				Permission permission = GetPermission(false, _user, "some activity");
 
-				_securityRepository.Stub(r => r.GetPermissionsForUserActivity(null, null)).IgnoreArguments()
+				_securityRepository.Stub(r => r.GetActivityPermissionsByUserAndRole(null, null)).IgnoreArguments()
 					.Return(new List<Permission> { permission });
 
 				ISecurityService securityService = GetSecurityService();
@@ -87,7 +87,7 @@ namespace Security.Specs
 			[Observation]
 			public void Should_load_any_available_permission_for_the_user_and_activity()
 			{
-				_securityRepository.AssertWasCalled(r => r.GetPermissionsForUserActivity(_user, _activity));
+				_securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByUserAndRole(_user, _activity));
 			}
 
 			[Test]
@@ -107,7 +107,7 @@ namespace Security.Specs
 
 			protected override void Context()
 			{
-				_securityRepository.Stub(r => r.GetPermissionsForUserActivity(null, null)).IgnoreArguments().Return(null);
+				_securityRepository.Stub(r => r.GetActivityPermissionsByUserAndRole(null, null)).IgnoreArguments().Return(null);
 
 				ISecurityService securityService = GetSecurityService();
 				isAllowed = securityService.IsAllowed(_user, _activity);
@@ -133,7 +133,7 @@ namespace Security.Specs
 				Permission allowedPermission = GetPermission(true, _user, "some activity");
 				Permission deniedPermission = GetPermission(false, _user, "some activity");
 
-				_securityRepository.Stub(r => r.GetPermissionsForUserActivity(null, null)).IgnoreArguments()
+				_securityRepository.Stub(r => r.GetActivityPermissionsByUserAndRole(null, null)).IgnoreArguments()
 					.Return(new List<Permission> { allowedPermission, deniedPermission });
 
 				ISecurityService securityService = GetSecurityService();

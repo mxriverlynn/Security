@@ -11,6 +11,7 @@ namespace Security.Specs
 	{
 
 		protected static bool allow = true;
+		protected static bool deny = false;
 
 		public class ManagePermissionsSpecsContext : ContextSpecification
 		{
@@ -40,20 +41,44 @@ namespace Security.Specs
 			{
 				return new Role();
 			}
+
+			protected void SetExistingPermissionForUser(Permission permission)
+			{
+				securityRepository.Stub(r => r.GetActivityPermissionsByUser(null, null))
+					.IgnoreArguments()
+					.Return(permission);
+			}
+
+			protected void SetExistingPermissionForRole(Permission permission)
+			{
+				securityRepository.Stub(r => r.GetActivityPermissionsByRole(null, null))
+					.IgnoreArguments()
+					.Return(permission);				
+			}
 		}
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_adding_a_user_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_setting_a_new_user_permission_for_an_activity : ManagePermissionsSpecsContext
 		{
+
+			IUser user;
+			Activity activity;
 
 			protected override void Context()
 			{
-				IUser user = GetUser();
-				Activity activity = GetActivity();
+				user = GetUser();
+				activity = GetActivity();
 
 				ISecurityService service = GetSecurityService();
-				service.AddPermission(user, activity, allow);
+				service.SetPermission(user, activity, allow);
+			}
+
+			[Test]
+			[Observation]
+			public void Should_check_for_an_existing_user_to_activity_permission()
+			{
+				securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByUser(user, activity));
 			}
 
 			[Test]
@@ -70,16 +95,65 @@ namespace Security.Specs
 
 		[TestFixture]
 		[Concern("Manage Permissions")]
-		public class When_adding_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		public class When_updating_a_user_permission_for_an_activity : ManagePermissionsSpecsContext
 		{
+
+			IUser user;
+			Activity activity;
+			Permission permission;
 
 			protected override void Context()
 			{
-				Role role = GetRole();
-				Activity activity = GetActivity();
+				user = GetUser();
+				activity = GetActivity();
+				permission = new Permission(user, activity, deny);
+				SetExistingPermissionForUser(permission);
 
 				ISecurityService service = GetSecurityService();
-				service.AddPermission(role, activity, allow);
+				service.SetPermission(user, activity, allow);
+			}
+
+			[Test]
+			[Observation]
+			public void Should_add_the_permission_for_the_specified_user()
+			{
+				securityRepository.AssertWasCalled(r => r.AddPermission(null), mo => mo
+					.IgnoreArguments()
+					.Constraints(Is.TypeOf<Permission>())
+				);
+			}
+
+			[Test]
+			[Observation]
+			public void Should_update_the_permission()
+			{
+				permission.IsAllowed.ShouldBeTrue();
+			}
+
+		}
+
+		[TestFixture]
+		[Concern("Manage Permissions")]
+		public class When_setting_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		{
+
+			Role role;
+			Activity activity;
+
+			protected override void Context()
+			{
+				role = GetRole();
+				activity = GetActivity();
+
+				ISecurityService service = GetSecurityService();
+				service.SetPermission(role, activity, allow);
+			}
+
+			[Test]
+			[Observation]
+			public void Should_check_for_an_existing_role_to_activity_permission()
+			{
+				securityRepository.AssertWasCalled(r => r.GetActivityPermissionsByRole(role, activity));
 			}
 
 			[Test]
@@ -93,5 +167,44 @@ namespace Security.Specs
 			}
 
 		}
+
+		[TestFixture]
+		[Concern("Manage Permissions")]
+		public class When_updating_a_role_permission_for_an_activity : ManagePermissionsSpecsContext
+		{
+			private Role role;
+			Activity activity;
+			Permission permission;
+
+			protected override void Context()
+			{
+				role = GetRole();
+				activity = GetActivity();
+				permission = new Permission(role, activity, deny);
+				SetExistingPermissionForRole(permission);
+
+				ISecurityService service = GetSecurityService();
+				service.SetPermission(role, activity, allow);
+			}
+
+			[Test]
+			[Observation]
+			public void Should_add_the_permission_for_the_specified_user()
+			{
+				securityRepository.AssertWasCalled(r => r.AddPermission(null), mo => mo
+					.IgnoreArguments()
+					.Constraints(Is.TypeOf<Permission>())
+				);
+			}
+
+			[Test]
+			[Observation]
+			public void Should_update_the_permission()
+			{
+				permission.IsAllowed.ShouldBeTrue();
+			}
+
+		}
+
 	}
 }

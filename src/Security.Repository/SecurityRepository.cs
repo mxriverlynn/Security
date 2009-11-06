@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Criterion;
@@ -8,7 +9,7 @@ namespace Security.TestRepository
 {
 	public class SecurityRepository: NHibernateRepository, ISecurityRepository
 	{
-		public IList<Permission> GetPermissionsForUserActivity(IUser user, string activity)
+		public IList<Permission> GetActivityPermissionsByUserAndRole(IUser user, string activity)
 		{
 			ICriterion userIdMatches = Restrictions.Eq("Id", user.Id);
 			ICriterion activityNameMatches = Restrictions.Eq("Name", activity);
@@ -33,6 +34,38 @@ namespace Security.TestRepository
 		public void AddPermission(Permission permission)
 		{
 			Session.SaveOrUpdate(permission);
+		}
+
+		public Permission GetActivityPermissionsByUser(IUser user, Activity activity)
+		{
+			DetachedCriteria permissionCriteria = DetachedCriteria.For<Permission>()
+				.Add(Restrictions.Eq("User", user))
+				.Add(Restrictions.Eq("Activity", activity));
+
+			ICriteria executableCriteria = permissionCriteria.GetExecutableCriteria(Session);
+			IList<Permission> permissions = executableCriteria.List<Permission>();
+
+			Permission permission = null;
+			if (permissions.Count > 0)
+				permission = permissions[0];
+			
+			return permission;
+		}
+
+		public Permission GetActivityPermissionsByRole(Role role, Activity activity)
+		{
+			DetachedCriteria permissionCriteria = DetachedCriteria.For<Permission>()
+				.Add(Restrictions.Eq("Role", role))
+				.Add(Restrictions.Eq("Activity", activity));
+
+			ICriteria executableCriteria = permissionCriteria.GetExecutableCriteria(Session);
+			IList<Permission> permissions = executableCriteria.List<Permission>();
+
+			Permission permission = null;
+			if (permissions.Count > 0)
+				permission = permissions[0];
+
+			return permission;
 		}
 	}
 }
