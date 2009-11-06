@@ -47,11 +47,11 @@
   <ItemGroup>
     <Compile Include="IAction.cs" />
     <Compile Include="ISecurityRepository.cs" />
-    <Compile Include="ISecurityService.cs" />
+    <Compile Include="IAuthorizationService.cs" />
     <Compile Include="IUser.cs" />
     <Compile Include="Permission.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecurityService.cs" />
+    <Compile Include="AuthorizationService.cs" />
     <Compile Include="IRole.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,7 +41,7 @@ namespace Security.TestApp
 			UnitOfWork.Start(() =>
          	{
 				CurrentUser = ObjectFactory.GetInstance<IUserRepository>().GetUser(name);
-				Allowed = ObjectFactory.GetInstance<ISecurityService>().IsAllowed(CurrentUser, "ButtonClick");			                 		
+				Allowed = ObjectFactory.GetInstance<IAuthorizationService>().IsAllowed(CurrentUser, "ButtonClick");			                 		
          	});
 
 			CurrentUserLabel.Text = CurrentUser.Name;

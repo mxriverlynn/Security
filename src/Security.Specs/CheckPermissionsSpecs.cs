@@ -21,9 +21,9 @@ namespace Security.Specs
 				_securityRepository = MockRepository.GenerateMock<ISecurityRepository>();
 			}
 
-			protected ISecurityService GetSecurityService()
+			protected IAuthorizationService GetSecurityService()
 			{
-				SecurityService service = new SecurityService(_securityRepository);
+				AuthorizationService service = new AuthorizationService(_securityRepository);
 				return service;
 			}
 
@@ -46,8 +46,8 @@ namespace Security.Specs
 				_securityRepository.Stub(r => r.GetActionPermissionsByUserAndRole(null, null)).IgnoreArguments()
 					.Return(new List<Permission> {permission});
 
-				ISecurityService securityService = GetSecurityService();
-				isAllowed = securityService.IsAllowed(_user, _action);
+				IAuthorizationService authorizationService = GetSecurityService();
+				isAllowed = authorizationService.IsAllowed(_user, _action);
 			}
 
 			[Test]
@@ -79,8 +79,8 @@ namespace Security.Specs
 				_securityRepository.Stub(r => r.GetActionPermissionsByUserAndRole(null, null)).IgnoreArguments()
 					.Return(new List<Permission> { permission });
 
-				ISecurityService securityService = GetSecurityService();
-				isAllowed = securityService.IsAllowed(_user, _action);
+				IAuthorizationService authorizationService = GetSecurityService();
+				isAllowed = authorizationService.IsAllowed(_user, _action);
 			}
 
 			[Test]
@@ -109,8 +109,8 @@ namespace Security.Specs
 			{
 				_securityRepository.Stub(r => r.GetActionPermissionsByUserAndRole(null, null)).IgnoreArguments().Return(null);
 
-				ISecurityService securityService = GetSecurityService();
-				isAllowed = securityService.IsAllowed(_user, _action);
+				IAuthorizationService authorizationService = GetSecurityService();
+				isAllowed = authorizationService.IsAllowed(_user, _action);
 			}
 
 			[Test]
@@ -136,8 +136,8 @@ namespace Security.Specs
 				_securityRepository.Stub(r => r.GetActionPermissionsByUserAndRole(null, null)).IgnoreArguments()
 					.Return(new List<Permission> { allowedPermission, deniedPermission });
 
-				ISecurityService securityService = GetSecurityService();
-				isAllowed = securityService.IsAllowed(_user, _action);
+				IAuthorizationService authorizationService = GetSecurityService();
+				isAllowed = authorizationService.IsAllowed(_user, _action);
 			}
 
 			[Test]

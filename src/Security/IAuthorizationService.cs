@@ -1,6 +1,6 @@
 namespace Security
 {
-	public interface ISecurityService
+	public interface IAuthorizationService
 	{
 		bool IsAllowed(IUser user, string action);
 		Permission SetPermission(IUser user, IAction action, bool isAllowed);

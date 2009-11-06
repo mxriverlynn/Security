@@ -13,8 +13,8 @@ namespace Security.TestApp
 			ForRequestedType<IUserRepository>()
 				.TheDefaultIsConcreteType<UserRepository>();
 
-			ForRequestedType<ISecurityService>()
-				.TheDefaultIsConcreteType<SecurityService>();
+			ForRequestedType<IAuthorizationService>()
+				.TheDefaultIsConcreteType<AuthorizationService>();
 		}
 	}
 }

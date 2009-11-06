@@ -33,9 +33,9 @@ namespace Security.Specs
 				return new User();
 			}
 
-			protected ISecurityService GetSecurityService()
+			protected IAuthorizationService GetSecurityService()
 			{
-				return new SecurityService(securityRepository);
+				return new AuthorizationService(securityRepository);
 			}
 
 			protected IRole GetRole()
@@ -71,7 +71,7 @@ namespace Security.Specs
 				user = GetUser();
 				action = GetAction();
 
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.SetPermission(user, action, allow);
 			}
 
@@ -110,7 +110,7 @@ namespace Security.Specs
 				permission = new Permission(user, action, deny);
 				SetExistingPermissionForUser(permission);
 
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.SetPermission(user, action, allow);
 			}
 
@@ -149,7 +149,7 @@ namespace Security.Specs
 				permission = new Permission(user, action, deny);
 				SetExistingPermissionForUser(permission);
 
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.RemovePermission(user, action);
 			}
 
@@ -177,7 +177,7 @@ namespace Security.Specs
 			{
 				user = GetUser();
 				action = GetAction();
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.RemovePermission(user, action);
 			}
 
@@ -210,7 +210,7 @@ namespace Security.Specs
 				role = GetRole();
 				action = GetAction();
 
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.SetPermission(role, action, allow);
 			}
 
@@ -248,7 +248,7 @@ namespace Security.Specs
 				permission = new Permission(role, action, deny);
 				SetExistingPermissionForRole(permission);
 
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.SetPermission(role, action, allow);
 			}
 
@@ -286,7 +286,7 @@ namespace Security.Specs
 				permission = new Permission(role, action, deny);
 				SetExistingPermissionForRole(permission);
 
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.RemovePermission(role, action);
 			}
 
@@ -313,7 +313,7 @@ namespace Security.Specs
 			{
 				role = GetRole();
 				action = GetAction();
-				ISecurityService service = GetSecurityService();
+				IAuthorizationService service = GetSecurityService();
 				service.RemovePermission(role, action);
 			}
 

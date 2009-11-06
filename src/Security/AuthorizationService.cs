@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace Security
 {
-	public class SecurityService : ISecurityService
+	public class AuthorizationService : IAuthorizationService
 	{
 		private ISecurityRepository SecurityRepository { get; set; }
 
-		public SecurityService(ISecurityRepository securityRepository)
+		public AuthorizationService(ISecurityRepository securityRepository)
 		{
 			SecurityRepository = securityRepository;
 		}
