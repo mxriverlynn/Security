@@ -89,16 +89,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActionMap.cs" />
-    <Compile Include="IActionMap.cs" />
-    <Compile Include="IRoleMap.cs" />
-    <Compile Include="IUserMap.cs" />
-    <Compile Include="PermissionMap.cs" />
+    <Compile Include="maps\ActionMap.cs" />
+    <Compile Include="maps\IActionMap.cs" />
+    <Compile Include="maps\IRoleMap.cs" />
+    <Compile Include="maps\IUserMap.cs" />
+    <Compile Include="maps\PermissionMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepoConfig.cs" />
-    <Compile Include="RoleMap.cs" />
+    <Compile Include="maps\RoleMap.cs" />
     <Compile Include="PermissionRepository.cs" />
-    <Compile Include="UserMap.cs" />
+    <Compile Include="maps\UserMap.cs" />
     <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>

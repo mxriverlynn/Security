@@ -1,6 +1,6 @@
 using FluentNHibernate.Mapping;
 
-namespace Security.TestRepository
+namespace Security.TestRepository.maps
 {
 	public class IRoleMap: ClassMap<IRole>
 	{
